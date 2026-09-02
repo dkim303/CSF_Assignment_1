@@ -119,8 +119,6 @@ Money Money::from_str( const std::string &s ) {
   return Money();
 }
 
-// TODO: implement private member functions
-
 /*
  * Ensure that 0 is a unique value. So any Money instance with amount
  * of 0 will be normalize to +0 if it is at -0.

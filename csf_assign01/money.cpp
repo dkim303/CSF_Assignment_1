@@ -65,13 +65,39 @@ Money Money::operator-( const Money &rhs ) const {
 }
 
 Money Money::operator*( uint64_t x ) const {
-  // TODO: implement
-  return Money();
+  // Case of either factor being 0 automatically makes result 0
+  if (this -> amount == 0 || x == 0) {
+    return Money(0, false);
+  }
+
+  uint64_t product = this -> amount * x;
+
+  // Check for multipliation overflow
+  if (product < this -> amount || product < x) {
+    throw std::overflow_error("Multiplication Overflow");
+  }
+
+  return Money(product, this -> negative);
 }
 
 std::vector< Money > Money::operator/( unsigned x ) const {
-  // TODO: implement
-  return std::vector< Money >();
+  if (x == 0) {
+    throw std::invalid_argument("Attempted division by 0");
+  }
+
+  uint64_t quotient = this -> amount / x;
+  std::vector<Money> result;
+  uint64_t remainder = this -> amount % x;
+
+  for (int i = 0; i < x; i++) {
+    if (i < remainder) {
+      result.push_back(Money(quotient + 1, this -> negative));
+    } else {
+      result.push_back(Money(quotient, this -> negative));
+    }
+  }
+
+  return result;
 }
 
 // Negation operator, not subtraction

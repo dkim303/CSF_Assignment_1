@@ -105,14 +105,119 @@ void test_div( TestObjs *objs ) {
 }
 // TODO: Implement additional test functions
 
-// Ideas:
-// integer overflow must throw std::overflow in addition
-// integer overflow in the negative direciton from subtraction
-// multiplication overflow must throw std::overflow
-// division by 0 must throw an exception
-// multiplication between +/- must give right sign at end
-// Ensure operator== evalues +0==-0 as true
-// Ensure normalize() function turns -0 into +0
-// Ensure if X == Y is true then X>=Y and X<=Y are both also true
-// Check multipication by 0 is 0
+/*
+ * Ensure integer overflow in positive direction throws std::overflow.
+ *
+ * Parameters:
+ *   TestObjs *objs
+ *
+ * Returns:
+ *  None
+ */
+void test_pos_overflow( TestObjs *objs ) {
 
+}
+
+/*
+ * Ensure integer overflow in negative direction throws std::overflow.
+ *
+ * Parameters:
+ *   TestObjs *objs
+ *
+ * Returns:
+ *  None
+ */
+void test_neg_overflow( TestObjs *objs ) {
+
+}
+
+/*
+ * Ensure multiplication causing overflow must throw std::overflow.
+ *
+ * Parameters:
+ *   TestObjs *objs
+ *
+ * Returns:
+ *  None
+ */
+void test_mul_overflow( TestObjs *objs ) {
+
+}
+
+/*
+ * Ensure attempted division by 0 throws an std::invalid_argument.
+ *
+ * Parameters:
+ *   TestObjs *objs
+ *
+ * Returns:
+ *  None
+ */
+void test_zero_division( TestObjs *objs ) {
+
+}
+
+/*
+ * Various tests to ensure correct sign logic with multiplication.
+ *
+ * Parameters:
+ *   TestObjs *objs
+ *
+ * Returns:
+ *  None
+ */
+void test_mul_signs( TestObjs *objs ) {
+
+}
+
+/*
+ * Ensure +0 is the same thing as -0.
+ *
+ * Parameters:
+ *   TestObjs *objs
+ *
+ * Returns:
+ *  None
+ */
+void test_normalized_zeros( TestObjs *objs ) {
+
+}
+
+/*
+ * Ensure if X == Y is true that X >= Y and X <= Y must also be true.
+ *
+ * Parameters:
+ *   TestObjs *objs
+ *
+ * Returns:
+ *  None
+ */
+void test_equality_logic( TestObjs *objs ) {
+
+}
+
+/*
+ * Ensure multiplication by 0 always returns 0.
+ *
+ * Parameters:
+ *   TestObjs *objs
+ *
+ * Returns:
+ *  None
+ */
+void test_zero_mult( TestObjs *objs ) {
+
+}
+
+/*
+ * Ensure private member functions of Money are not accessible from the outside.
+ *
+ * Parameters:
+ *   TestObjs *objs
+ *
+ * Returns:
+ *  None
+ */
+void test_private_members( TestObjs *objs ) {
+
+}

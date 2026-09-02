@@ -74,9 +74,10 @@ std::vector< Money > Money::operator/( unsigned x ) const {
   return std::vector< Money >();
 }
 
+// Negation operator, not subtraction
 Money Money::operator-() const {
-  // TODO: implement
-  return Money();
+  // use not to flip sign of negative
+  return Money(this -> amount, !(this -> negative));
 }
 
 bool Money::operator<( const Money &rhs ) const {

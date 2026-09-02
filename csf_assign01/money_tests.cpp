@@ -50,7 +50,17 @@ int main( int argc, char **argv ) {
   TEST( test_is_negative );
   TEST( test_add );
   TEST( test_div );
+
   // TODO: run your additional test functions
+  TEST( test_pos_overflow );
+  TEST( test_neg_overflow );
+  TEST( test_mul_overflow );
+  TEST( test_zero_division );
+  TEST( test_mul_signs );
+  TEST( test_normalized_zeros );
+  TEST( test_equality_logic );
+  TEST( test_zero_mult );
+  TEST( test_private_members );
 
   TEST_FINI();
 }
@@ -154,7 +164,8 @@ void test_mul_overflow( TestObjs *objs ) {
  *  None
  */
 void test_zero_division( TestObjs *objs ) {
-
+  Money money(100, false);
+  money/0;
 }
 
 /*

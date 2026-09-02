@@ -1,3 +1,10 @@
+/*
+ * Header file containing prototypes for the Money class and its methods
+ * CSF Assignment 1
+ * Darius Kim
+ * dkim262@jhu.edu
+ */
+
 #ifndef MONEY_H
 #define MONEY_H
 
@@ -7,7 +14,9 @@
 
 class Money {
 private:
-  // TODO: add member variables
+  // Added fields for amount (in hundreds) and is negative bool
+  uint64_t amount;
+  bool negative;
 
 public:
   //! Construct from a numeric amount and sign flag.

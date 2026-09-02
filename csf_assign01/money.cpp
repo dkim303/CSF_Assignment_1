@@ -112,7 +112,21 @@ bool Money::operator<( const Money &rhs ) const {
 }
 
 bool Money::operator<=( const Money &rhs ) const {
-  // TODO: implement
+  // Quick check based on negative value: LHS is false but RHS is true
+  if (this -> negative && !rhs.negative) {
+    return true;
+  }
+
+  // In case both positive
+  if (!(this -> negative) && !(rhs.negative)) {
+    return this -> amount <= rhs.amount;
+  }
+
+  // In case both negative, return true of LHS has less magnitude than RHS
+  if ((this -> negative) && (rhs.negative)) {
+    return this -> amount >= rhs.amount;
+  }
+
   return false;
 }
 
@@ -122,13 +136,30 @@ bool Money::operator>( const Money &rhs ) const {
 }
 
 bool Money::operator>=( const Money &rhs ) const {
-  // TODO: implement
+  // Quick check based on negative value: LHS is false but RHS is true
+  if (!(this -> negative) && rhs.negative) {
+    return true;
+  }
+
+  // In case both positive
+  if (!(this -> negative) && !(rhs.negative)) {
+    return this -> amount >= rhs.amount;
+  }
+
+  // In case both negative, return true of LHS has less magnitude than RHS
+  if ((this -> negative) && (rhs.negative)) {
+    return this -> amount <= rhs.amount;
+  }
+
   return false;
 }
 
 bool Money::operator==( const Money &rhs ) const {
-  // TODO: implement
-  return false;
+  if (this -> amount == rhs.amount && this -> negative == rhs.negative) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 bool Money::operator!=( const Money &rhs ) const {

@@ -1,3 +1,10 @@
+/*
+ * Unit testing file for the Money class and its methods
+ * CSF Assignment 1
+ * Darius Kim
+ * dkim262@jhu.edu
+ */
+
 #include <iostream>
 #include "money.h"
 #include "tctest.h"

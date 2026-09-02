@@ -14,19 +14,20 @@ Money::Money( uint64_t amount, bool negative ) {
   // Default values are 0 and false respectively  
   this -> amount = amount;
   this -> negative = negative;
-
   this -> normalize();
 }
 
+// Copy constructor just copies the values of the other's fields
 Money::Money( const Money &other ) {
-  // Copy constructor
-
+  this - > amount = other.amount;
+  this -> negative = other.negative;
+  this -> normalize();
 }
 
 // Destructor can be left bare since no fields are allocated on heap
-Money::~Money() {
-}
+Money::~Money() { }
 
+// Set values equal to the RHS's values
 Money &Money::operator=( const Money &rhs ) {
   this -> amount = rhs.amount;
   this -> negative = rhs.negative;
@@ -47,8 +48,6 @@ uint64_t Money::get_frac() const {
 bool Money::is_negative() const {
   return this -> negative;
 }
-
-
 
 
 
@@ -122,8 +121,16 @@ Money Money::from_str( const std::string &s ) {
 
 // TODO: implement private member functions
 
-
-// Ensure there is only +0, no -0
+/*
+ * Ensure that 0 is a unique value. So any Money instance with amount
+ * of 0 will be normalize to +0 if it is at -0.
+ *
+ * Parameters:
+ *   None
+ *
+ * Returns:
+ *  None
+ */
 void Money::normalize() {
   if (this -> amount == 0 && this -> negative) {
     this -> negative = false;

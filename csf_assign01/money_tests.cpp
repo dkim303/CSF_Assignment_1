@@ -106,5 +106,13 @@ void test_div( TestObjs *objs ) {
 // TODO: Implement additional test functions
 
 // Ideas:
-//
+// integer overflow must throw std::overflow in addition
+// integer overflow in the negative direciton from subtraction
+// multiplication overflow must throw std::overflow
+// division by 0 must throw an exception
+// multiplication between +/- must give right sign at end
+// Ensure operator== evalues +0==-0 as true
+// Ensure normalize() function turns -0 into +0
+// Ensure if X == Y is true then X>=Y and X<=Y are both also true
+// Check multipication by 0 is 0
 

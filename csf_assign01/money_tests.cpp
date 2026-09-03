@@ -252,3 +252,24 @@ void test_to_str_basic( TestObjs *objs ) {
   ASSERT( euro_str == "€100.25" );
   ASSERT( usd_str == "-$0.25" );
 }
+
+/*
+ * Ensure to_str method rejeects invalid currency arguments. Even if the currency
+ * string passed in is illogical, the code should run anyway.
+ *
+ * Parameters:
+ *   TestObjs *objs
+ *
+ * Returns:
+ *  None
+ */
+ void test_to_str_weird_currency( TestObjs *objs ) {
+  Money weird_unicode(95710, true);
+  Money nums_name(32532, false);
+
+  std::string weird_str = weird_unicode.to_str("\n!4'_||");
+  std::string nums_str = nums_name.to_str("12");
+
+  ASSERT( euro_str == "-\n!4'_||957.10" );
+  ASSERT( usd_str == "12325.32" );
+ }

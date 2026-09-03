@@ -10,6 +10,8 @@
 #include <cctype>
 #include "money.h"
 
+#include <cmath>
+
 Money::Money( uint64_t amount, bool negative ) {
   // Default values are 0 and false respectively  
   this -> amount = amount;
@@ -55,13 +57,77 @@ bool Money::is_negative() const {
 // Milestone 2 Implementations
 
 Money Money::operator+( const Money &rhs ) const {
-  // TODO: implement
-  return Money();
+  // Behavior depends on cases of LHS and RHS sign
+
+  // Case 1: both positive
+  if (!this -> negative && !rhs.negative) {
+    uint64_t sum = this -> amount + rhs.amount;
+
+    // Overflow error will see if the sum wraps around the max and goes back to 0
+    if (this -> amount < sum) {
+      throw std::overflow_error();
+    } else {
+      return Money(sum, false);
+    }
+  }
+
+  // Case 2: both negative
+  if (this -> negative && rhs.negative) {
+    uint64_t sum = this -> amount + rhs.amount;
+
+    if (sum < this -> amount) {
+      throw new std::overflow_error();
+    } else {
+      return Money(sum, true);
+    }
+  }
+
+  // Case 3: LHS positive, RHS negative
+  if (!this -> negative && rhs.negative) {
+    // if LHS < RHS
+    if (this -> amount < rhs.amount) {
+      uint64_t remainder = rhs.amount - this -> amount;
+      return Money(remainder, true);
+    } else {
+      // if LHS >= RHS, equality gets normalized in constructor
+      return Money(this -> amount - rhs.amount, false);
+    }
+
+  }
+
+  // Case 4: LHS negative, RHS positive
+  if (this -> negative && !rhs.negative) {
+    // if LHS > RHS
+    if (this -> amount > rhs.amount) {
+      uint64_t remainder = this -> amount - rhs.amount;
+      return Money(remainder, true);
+    } else {
+      // if LHS <= RHS
+      return Money(rhs.amount - this -> amount, false);
+    }  }
+
 }
 
 Money Money::operator-( const Money &rhs ) const {
-  // TODO: implement
-  return Money();
+  // Case 1: LHS and RHS are both positive
+  if () {
+
+  }
+
+  // Case 2: LHS and RHS are both negative
+  if () {
+
+  }
+
+  // Case 3: LHS negative, RHS positive
+  if () {
+
+  }
+  
+  // Case 4: LHS positive, RHS negative
+  if () {
+
+  }
 }
 
 Money Money::operator*( uint64_t x ) const {
@@ -102,7 +168,7 @@ std::vector< Money > Money::operator/( unsigned x ) const {
 
 // Negation operator, not subtraction
 Money Money::operator-() const {
-  // use not to flip sign of negative
+  // Flip sign of negative
   return Money(this -> amount, !(this -> negative));
 }
 

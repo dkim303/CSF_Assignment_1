@@ -11,6 +11,8 @@
 #include "money.h"
 
 #include <sstream>
+#include <cstdint>
+#include <limits>
 
 Money::Money( uint64_t amount, bool negative ) {
   // Default values are 0 and false respectively  
@@ -253,9 +255,45 @@ std::string Money::to_str( const std::string &curr_sym ) const {
   return result.str();
 }
 
+
 Money Money::from_str( const std::string &s ) {
-  
-  return Money();
+  // Accepted forms, make cases for each: 
+  // MSX.Y
+  // MSX
+  // MS.Y
+
+  char first = s.at(0);
+  bool negative;
+  uint64_t whole;
+  uint64_t frac;
+
+  //! @throw std::invalid_argument if the string is not a valid
+  //!        currency value (as described above)
+  //! @throw std::overflow_error if the currency value represented
+  //!        by the string is too large to fit in a uint64_t value
+
+  // We do not need to keep the currency string so we can ignore it when outputting
+
+  // to check for std::overflow_error, check if the length of the number is too long as an easy check,
+  // then if the length is the same length as the max can be, go through each digit and see if it is 
+  // greater than the highest possible digit
+  uint64_t max_possible = std::numeric_limits<uint64_t>::max();
+
+  // 2 Cases depending on if the value is negative
+  if (first == '-') {
+    negative = true;
+    int index = 1;
+
+    // We
+    while (!std::isdigit(s.at(index))) {
+      index += 1;
+    }
+
+  } else {
+    negative = false;
+    int index = 0;
+
+  }
 }
 
 /*

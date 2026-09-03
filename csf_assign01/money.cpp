@@ -10,7 +10,7 @@
 #include <cctype>
 #include "money.h"
 
-#include <cmath>
+#include <sstream>
 
 Money::Money( uint64_t amount, bool negative ) {
   // Default values are 0 and false respectively  
@@ -234,12 +234,27 @@ bool Money::operator!=( const Money &rhs ) const {
 }
 
 std::string Money::to_str( const std::string &curr_sym ) const {
-  // TODO: implement
-  return "";
+  std::ostringstream result;
+
+  // Add M to front if negative
+  if (this -> negative) {
+    result << "-";
+  }
+
+  result << curr_sym << this -> get_whole() << ".";
+  
+  // Pad an extra 0 to the frac portion in case it is < 10
+  if (this -> get_frac() < 10) {
+    result << 0 << this -> get_frac();
+  } else {
+    result << this -> get_frac();
+  }
+  
+  return result.str();
 }
 
 Money Money::from_str( const std::string &s ) {
-  // TODO: implement
+  
   return Money();
 }
 

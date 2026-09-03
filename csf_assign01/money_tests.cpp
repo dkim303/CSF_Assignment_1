@@ -232,3 +232,23 @@ void test_zero_mult( TestObjs *objs ) {
 void test_private_members( TestObjs *objs ) {
 
 }
+
+/*
+ * Ensure basic functionality of to_str method
+ *
+ * Parameters:
+ *   TestObjs *objs
+ *
+ * Returns:
+ *  None
+ */
+void test_to_str_basic( TestObjs *objs ) {
+  Money euro(10025, false);
+  Money usd(25, true);
+
+  std::string euro_str = euro.to_str("€");
+  std::string usd_str = usd.to_str("$");
+
+  ASSERT( euro_str == "€100.25" );
+  ASSERT( usd_str == "-$0.25" );
+}

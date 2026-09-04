@@ -175,7 +175,23 @@ Money Money::operator-() const {
 }
 
 bool Money::operator<( const Money &rhs ) const {
-  // TODO: implement
+  // Quick check based on signs
+  if (this -> negative && !rhs.negative) {
+    return true;
+  } else if (!this -> negative && rhs.negative) {
+    return false;
+  }
+
+  // Case of both positive
+  if (!this -> negative && !rhs.negative) {
+    return this -> amount < rhs.amount;
+  }
+
+  // Case of both negative
+  if (this -> negative && rhs.negative) {
+    return this -> amount > rhs.amount;
+  }
+
   return false;
 }
 
@@ -199,7 +215,23 @@ bool Money::operator<=( const Money &rhs ) const {
 }
 
 bool Money::operator>( const Money &rhs ) const {
-  // TODO: implement
+  // Quick check based on signs
+  if (this -> negative && !rhs.negative) {
+    return false;
+  } else if (!this -> negative && rhs.negative) {
+    return true;
+  }
+
+  // Case of both positive
+  if (!this -> negative && !rhs.negative) {
+    return this -> amount > rhs.amount; 
+  }
+
+  // Case of both negative
+  if (this -> negative && rhs.negative) {
+    return this -> amount < rhs.amount;
+  }
+
   return false;
 }
 

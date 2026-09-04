@@ -263,8 +263,11 @@ bool Money::operator==( const Money &rhs ) const {
 }
 
 bool Money::operator!=( const Money &rhs ) const {
-  // TODO: implement
-  return false;
+  if (this -> negative != rhs.negative) {
+    return true
+  } else {
+    return this -> amount == rhs.amount;
+  }
 }
 
 std::string Money::to_str( const std::string &curr_sym ) const {
